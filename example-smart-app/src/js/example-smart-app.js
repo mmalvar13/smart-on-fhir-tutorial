@@ -58,6 +58,26 @@
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
+          p.allergies = []
+
+          //allergies
+          allergies.map(function(item) {
+            var substance = item.substance.text
+            var status = item.status
+            var criticality = item.criticality
+            var cat = item.category
+
+
+            var obj = {
+              'substance': substance,
+              'status': status,
+              'criticality': criticality,
+              'category': cat,
+
+            }
+
+            p.allergies.push(obj)
+          })
 
           if (typeof systolicbp != 'undefined') {
             p.systolicbp = systolicbp;
@@ -111,6 +131,9 @@
       hdl: {
         value: ''
       },
+      allergies: {
+        value: []
+      }
     };
   }
 
@@ -154,6 +177,10 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#substance').html(p.allergies[0].substance);
+    $('#status').html(p.allergies[0].status)
+    $('#criticality').html(p.allergies[0].criticality)
+    $('#category').html(p.allergies[0].category)
   };
 
 })(window);
