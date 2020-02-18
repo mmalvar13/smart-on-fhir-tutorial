@@ -8,9 +8,9 @@
     }
 
     function onReady(smart) {
-      const client = FHIR.client('https://r4.smarthealthit.org');
 
-      console.log(client.request("AllergyIntolerance"))
+
+      // console.log(client.request("AllergyIntolerance"))
       console.log('inside on ready')
 
       if (smart.hasOwnProperty('patient')) {
@@ -136,7 +136,8 @@
     //   serverUrl: "https://r4.smarthealthit.org"
     // });
 
-    // console.log('client', client)
+    const client = FHIR.client('https://r4.smarthealthit.org');
+    console.log('client', client)
     FHIR.oauth2.ready(onReady, onError);
     return ret.promise();
 
