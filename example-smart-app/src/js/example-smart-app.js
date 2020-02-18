@@ -10,7 +10,7 @@
     function onReady(smart) {
 
       console.log(smart.server.serviceUrl)
-      const client = FHIR.client(smart.server.serviceUrl);
+      const client = FHIR.client('https://fhir-ehr.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca');
       console.log(client)
 
 
