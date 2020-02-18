@@ -9,6 +9,7 @@
 
     function onReady(smart) {
 
+      console.log(smart.server.serviceUrl)
       const client = FHIR.client(smart.server.serviceUrl);
       console.log(client)
 
