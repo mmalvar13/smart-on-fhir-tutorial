@@ -15,7 +15,7 @@
         console.log(smart)
 
         // client.request({
-        //   url: "AllergyIntolerance?patient=4342008",
+        //   url: "AllergyIntolerance?patient=4342008"g,
         //   method: "PUT"
         //   body:
         // })
@@ -39,11 +39,19 @@
           }]
         });
 
+        var updateAllergies = smart.patient.api.fetchAll({
+          type: "AllergyIntolerance",
+          interaction: [{
+            "code": "write"
+          }]
+        })
+
         $.when(pt, obv).fail(onError);
 
-        $.when(pt, obv, allergies).done(function(patient, obv, allergies) {
+        $.when(pt, obv, allergies, updateAllergies).done(function(patient, obv, allergies, updateAllergies) {
           console.log('inside')
           console.log('allergies', allergies)
+          console.log('update allergies', updateAllergies)
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
