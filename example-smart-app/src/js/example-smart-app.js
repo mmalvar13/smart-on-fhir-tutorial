@@ -13,10 +13,8 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var user = smart.user;
-        var encounter = smart.encounter;
         var pt = patient.read();
         var userRead = user.read();
-        var encounterRead = encounter.read();
 
         var allin = smart.request("AllergyIntolerance")
         console.log(allin)
