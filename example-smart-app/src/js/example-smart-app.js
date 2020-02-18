@@ -114,23 +114,10 @@
         onError();
       }
 
-      const fhirClient = require("fhirclient");
+      const smart = FHIR.oauth2;
+      smart.authorize(options);
 
-      // This is what the EHR will call
-      app.get("/launch", (req, res) => {
-        fhirClient(req, res).authorize({
-          "client_id": "b59686f8-4e2f-4ca2-a481-c7853a9c5b43",
-          "scope": "patient/Patient.read patient/Patient.write patient/Observation.read patient/AllergyIntolerance.read patient/AllergyIntolerance.write user/AllergyIntolerance.read user/AllergyIntolerance.write launch online_access openid profile"
-        });
-      });
-
-      // This is what the Auth server will redirect to
-      app.get("/", (req, res) => {
-        fhirClient(req, res).ready()
-          .then(client => client.request("Patient"))
-          .then(res.json)
-          .catch(res.json);
-      });
+      console.log('smartypants', smart)
 
       console.log('after get')
     }
