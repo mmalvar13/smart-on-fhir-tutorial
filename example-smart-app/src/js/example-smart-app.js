@@ -113,6 +113,26 @@
       } else {
         onError();
       }
+
+      const fhirClient = require("fhirclient");
+
+      // This is what the EHR will call
+      app.get("/launch", (req, res) => {
+        fhirClient(req, res).authorize({
+          "client_id": "my_web_app",
+          "scope": "patient/*.read"
+        });
+      });
+
+      // This is what the Auth server will redirect to
+      app.get("/", (req, res) => {
+        fhirClient(req, res).ready()
+          .then(client => client.request("Patient"))
+          .then(res.json)
+          .catch(res.json);
+      });
+
+      console.log('after get')
     }
 
     FHIR.oauth2.ready(onReady, onError);
