@@ -10,6 +10,9 @@
     function onReady(smart) {
       console.log('inside on ready')
       console.log(smart)
+      console.log(smart.client)
+      console.log(client)
+      console.log(client.patient.read())
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
