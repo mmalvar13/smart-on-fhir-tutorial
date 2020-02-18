@@ -119,8 +119,8 @@
       // This is what the EHR will call
       app.get("/launch", (req, res) => {
         fhirClient(req, res).authorize({
-          "client_id": "my_web_app",
-          "scope": "patient/*.read"
+          "client_id": "b59686f8-4e2f-4ca2-a481-c7853a9c5b43",
+          "scope": "patient/Patient.read patient/Patient.write patient/Observation.read patient/AllergyIntolerance.read patient/AllergyIntolerance.write user/AllergyIntolerance.read user/AllergyIntolerance.write launch online_access openid profile"
         });
       });
 
