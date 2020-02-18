@@ -9,13 +9,17 @@
 
     function onReady(smart) {
       console.log('inside on ready')
-      console.log(smart)
-      console.log(smart.client)
-      console.log(client)
-      console.log(client.patient.read())
+
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
+        var user = smart.user;
+        var encounter = smart.encounter;
         var pt = patient.read();
+        var userRead = user.read();
+        var encounterRead = encounter.read();
+
+        var allin = smart.request("AllergyIntolerance")
+        console.log(allin)
 
         console.log(smart)
 
