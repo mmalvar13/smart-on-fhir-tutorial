@@ -8,6 +8,7 @@
     }
 
     function onReady(smart) {
+      console.log(smart)
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
@@ -116,18 +117,17 @@
 
 
     }
-    const smart = FHIR.oauth2;
-    smart.authorize(options);
+
 
     console.log('smartypants', smart)
 
     console.log('after get')
 
-    const client = FHIR.client({
-      serverUrl: "https://r4.smarthealthit.org"
-    });
+    // const client = FHIR.client({
+    //   serverUrl: "https://r4.smarthealthit.org"
+    // });
 
-    console.log('client', client)
+    // console.log('client', client)
     FHIR.oauth2.ready(onReady, onError);
     return ret.promise();
 
