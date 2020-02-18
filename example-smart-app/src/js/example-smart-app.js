@@ -52,7 +52,7 @@
           console.log('inside')
           console.log('allergies', allergies)
           console.log('update allergies', updateAllergies)
-          console.log('after update allergies')
+          console.log('after update allergiesgi')
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
