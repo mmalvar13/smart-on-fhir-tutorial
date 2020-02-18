@@ -119,9 +119,9 @@
     }
 
 
-    console.log('smartypants', smart)
+    // console.log('smartypants', smart)
 
-    console.log('after get')
+    // console.log('after get')
 
     // const client = FHIR.client({
     //   serverUrl: "https://r4.smarthealthit.org"
