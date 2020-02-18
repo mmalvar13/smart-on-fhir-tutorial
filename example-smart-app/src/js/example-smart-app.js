@@ -11,6 +11,15 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
+
+        print(smart)
+
+        // client.request({
+        //   url: "AllergyIntolerance?patient=4342008",
+        //   method: "PUT"
+        //   body:
+        // })
+
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
           query: {
