@@ -12,7 +12,7 @@
         var patient = smart.patient;
         var pt = patient.read();
 
-        print(smart)
+        console.log(smart)
 
         // client.request({
         //   url: "AllergyIntolerance?patient=4342008",
