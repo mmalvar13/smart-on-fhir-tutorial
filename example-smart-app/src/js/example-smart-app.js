@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      const client = FHIR.client("https://r4.smarthealthit.org");
+      const client = FHIR.client('https://r4.smarthealthit.org');
 
       console.log(client.request("AllergyIntolerance"))
       console.log('inside on ready')
