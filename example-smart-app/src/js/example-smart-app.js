@@ -9,6 +9,9 @@
 
     function onReady(smart) {
 
+      const client = FHIR.client(smart.server.serviceUrl);
+      console.log(client)
+
 
       // console.log(client.request("AllergyIntolerance"))
       console.log('inside on ready')
