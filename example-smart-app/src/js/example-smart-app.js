@@ -120,6 +120,12 @@
       console.log('smartypants', smart)
 
       console.log('after get')
+
+      const client = FHIR.client({
+        serverUrl: "https://r4.smarthealthit.org"
+      });
+
+      console.log('client', client)
     }
 
     FHIR.oauth2.ready(onReady, onError);
