@@ -8,6 +8,9 @@
     }
 
     function onReady(smart) {
+      const client = FHIR.client("https://r4.smarthealthit.org");
+
+      console.log(client.request("AllergyIntolerance"))
       console.log('inside on ready')
 
       if (smart.hasOwnProperty('patient')) {
@@ -16,8 +19,8 @@
         var pt = patient.read();
         var userRead = user.read();
 
-        var allin = smart.request("AllergyIntolerance")
-        console.log(allin)
+        // var allin = smart.request("AllergyIntolerance")
+        // console.log(allin)
 
         console.log(smart)
 
