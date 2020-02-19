@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('15')
+      console.log('16')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -17,10 +17,95 @@
         var userRead = user.read();
 
         console.log('after user read')
-        console.log(userRead)
+        console.log(smart.user.api)
         console.log(smart.patient.api)
 
+        var testpatient = smart.patient.create({
+          "resourceType": "Patient",
+          "identifier": [{
+            "assigner": {
+              "reference": "Organization/619848"
+            }
+          }],
+          "active": true,
+          "name": [{
+              "use": "official",
+              "family": [
+                "Wolf"
+              ],
+              "given": [
+                "Person",
+                "Name"
+              ],
+              "period": {
+                "start": "2010-05-17T14:54:31.000Z"
+              }
+            },
+            {
+              "use": "usual",
+              "given": [
+                "Bigby"
+              ],
+              "period": {
+                "start": "2012-05-22T15:45:50.000Z"
+              }
+            }
+          ],
+          "telecom": [{
+            "system": "phone",
+            "value": "8168229121",
+            "use": "home",
+            "period": {
+              "start": "2012-05-17T15:33:18.000Z"
+            }
+          }],
+          "gender": "male",
+          "birthDate": "1990-09-15",
+          "address": [{
+            "use": "home",
+            "line": [
+              "121212 Metcalf Drive",
+              "Apartment 403"
+            ],
+            "city": "Kansas City",
+            "district": "Jackson",
+            "state": "KS",
+            "postalCode": "64199",
+            "country": "United States of America",
+            "period": {
+              "start": "2012-05-17T15:33:18.000Z"
+            }
+          }],
+          "maritalStatus": {
+            "coding": [{
+              "system": "http://hl7.org/fhir/v3/NullFlavor",
+              "code": "UNK",
+              "display": "Unknown"
+            }],
+            "text": "Unknown"
+          },
+          "communication": [{
+            "language": {
+              "coding": [{
+                "system": "urn:ietf:bcp:47",
+                "code": "en",
+                "display": "English"
+              }],
+              "text": "English"
+            },
+            "preferred": true
+          }],
+          "careProvider": [{
+              "reference": "Practitioner/4594010"
+            },
+            {
+              "reference": "Practitioner/4646007"
+            }
+          ]
+        })
 
+
+        console.log(testpatient)
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
