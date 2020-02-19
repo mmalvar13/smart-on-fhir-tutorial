@@ -25,7 +25,7 @@
         // console.log(hey)
 
         var testpatient = smart.api.create({
-          "resourceType": "Patient",
+          "type": "Patient",
           "identifier": [{
             "assigner": {
               "reference": "Organization/619848"
