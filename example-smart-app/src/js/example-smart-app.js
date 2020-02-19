@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('31')
+      console.log('32')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -24,36 +24,38 @@
         // var hey = smart.api.create()
         // console.log(hey)
 
+
+
         var testpatient = smart.api.create({
-          type: 'AllergyIntolerance',
-          query: {
-            resourceType: 'AllergyIntolerance',
-            recordedDate: "2015-10-14T13:13:20-06:00",
-            patient: {
-              reference: "Patient/5366327"
+          "type": "AllergyIntolerance",
+          "query": {
+            "resourceType": "AllergyIntolerance",
+            "recordedDate": "2015-10-14T13:13:20-06:00",
+            "patient": {
+              "reference": "Patient/5366327"
             },
-            reporter: {
-              reference: "Patient/5366327"
+            "reporter": {
+              "reference": "Patient/5366327"
             },
-            substance: {
-              coding: [{
-                system: "http://www.nlm.nih.gov/research/umls/rxnorm",
-                code: "4125",
-                display: "Ethiodized oil"
+            "substance": {
+              "coding": [{
+                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                "code": "4125",
+                "display": "Ethiodized oil"
               }]
             },
-            status: "resolved",
-            criticality: "CRITU",
-            type: "food",
-            note: {
-              text: "Patient complains of discomfort"
+            "status": "resolved",
+            "criticality": "CRITU",
+            "type": "food",
+            "note": {
+              "text": "Patient complains of discomfort"
             },
-            reaction: [{
-              manifestation: [{
-                coding: [{
-                  system: "http://snomed.info/sct",
-                  code: "39579001",
-                  display: "Anaphylactic reaction"
+            "reaction": [{
+              "manifestation": [{
+                "coding": [{
+                  "system": "http://snomed.info/sct",
+                  "code": "39579001",
+                  "display": "Anaphylactic reaction"
                 }]
               }]
             }]
