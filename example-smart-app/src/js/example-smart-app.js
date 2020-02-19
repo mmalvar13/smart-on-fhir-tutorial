@@ -8,29 +8,16 @@
     }
 
     function onReady(smart) {
-      console.log('9')
-      console.log(smart.server.serviceUrl)
-      console.log(FHIR.client({
-        serviceUrl: smart.server.serviceUrl
-      }))
-
-      const client = FHIR.client({
-        serviceUrl: smart.server.serviceUrl
-      })
-      console.log(client)
-
-      test = client.request("Patient");
-      console.log(test)
-
-
-      // console.log(client.request("AllergyIntolerance"))
-      console.log('inside on ready')
-
+      console.log('11')
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var user = smart.user;
         var pt = patient.read();
         var userRead = user.read();
+
+        var trythis = smart.request()
+
+        console.log(trythis)
 
         // var allin = smart.request("AllergyIntolerance")
         // console.log(allin)
