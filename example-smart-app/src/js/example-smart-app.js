@@ -79,6 +79,7 @@
             console.log(p);
 
             FHIR.oauth2.ready(function(smart) {
+                console.log("inside oauth patient", smart);
                 var resource = {
                     resourceType: "Patient",
                     text: {
@@ -178,7 +179,7 @@
         };
 
         function onReady(smart) {
-            console.log("45");
+            console.log("46");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -220,9 +221,9 @@
                         }
                     ]
                 });
-                console.log("before pt obv");
-                console.log(pt);
-                console.log("after pt");
+                // console.log("before pt obv");
+                // console.log(pt);
+                // console.log("after pt");
 
                 $.when(pt, obv).fail(onError);
 
