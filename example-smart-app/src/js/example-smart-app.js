@@ -7,25 +7,63 @@
       ret.reject();
     }
 
-    function onReady(smart) {
-      console.log('35')
-      if (smart.hasOwnProperty('patient')) {
-        console.log('inside smart has own property')
-        var patient = smart.patient;
-        var user = smart.user;
-        var pt = patient.read();
-        var userRead = user.read();
+    function addPatient() {
+      var resource = {
+        "resourceType": "Patient",
+        "text": {
+          "status": "generated",
+          "div": "<div><p>Test Patient</p></div>"
+        },
+        "identifier": [{
+          "use": "usual",
+          "type": {
+            "coding": [{
+              "system": "http://hl7.org/fhir/v2/0203",
+              "code": "MR",
+              "display": "Medical record number"
+            }],
+            "text": "Medical record number"
+          },
+          "system": "http://hospital.smarthealthit.org",
+          "value": "12345"
+        }],
+        "active": false,
+        "name": [{
+          "use": "official",
+          "family": [
+            "Monica"
+          ],
+          "given": [
+            "Monzi"
+          ]
+        }],
+        "gender": "female",
+        "birthDate": "2007-03-20",
+      };
 
-        console.log('after user read')
-        console.log(smart)
-        console.log(smart.user)
-        console.log(smart.patient.api)
+      smart.api.create({
+        resource: resource
+      }).done(function(r) {
 
-        // var hey = smart.api.create()
-        // console.log(hey)
+        // NOTE that the patient will now have new "id" assigned by the
+        // server. The next request will be PUT (update) and that id will
+        // be required...
+        var patient = r.data;
+        patient["active"] = true;
+        smart.api.update({
+          resource: patient
+        }).done(function(r) {
+          var out = JSON.stringify(r.data, null, "   ");
+          document.getElementsByTagName("pre")[0].innerText = "Now " +
+            "we have the following patient in the FHIR server:\n\n" +
+            out;
+        });
+      });
+    }
 
+    function addNewPatient() {
 
-
+      FHIR.oauth2.ready(function(smart) {
         var resource = {
           "resourceType": "Patient",
           "text": {
@@ -49,16 +87,17 @@
           "name": [{
             "use": "official",
             "family": [
-              "Monica"
+              "Adam"
             ],
             "given": [
-              "Monzi"
+              "Adamson"
             ]
           }],
           "gender": "female",
           "birthDate": "2007-03-20",
         };
 
+        // Create the patient and then update its active flag to "true"
         smart.api.create({
           resource: resource
         }).done(function(r) {
@@ -77,7 +116,16 @@
               out;
           });
         });
+      });
+    }
 
+    function onReady(smart) {
+      console.log('35')
+      if (smart.hasOwnProperty('patient')) {
+        console.log('inside smart has own property')
+        var patient = smart.patient;
+        var user = smart.user;
+        var pt = patient.read();
 
 
         var obv = smart.patient.api.fetchAll({
@@ -112,12 +160,7 @@
         $.when(pt, obv).fail(onError);
 
         $.when(pt, obv, allergies, updateAllergies).done(function(patient, obv, allergies, updateAllergies) {
-          console.log('inside')
-          console.log('allergies', allergies)
-          console.log('update allergies', updateAllergies)
-          console.log('after update allergiesgi')
-          console.log('pt', pt)
-          console.log('obv', obv)
+
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 

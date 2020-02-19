@@ -107,8 +107,31 @@
                 <td id="category"></td>
             </tr>
         </table>
-        <div id="thebutton">Add Patient</div>
+
+        <form>
+            <h2>Add A Patient</h2>
+            <label for="fname">First name:</label>
+            <input
+                type="text"
+                id="fname"
+                name="fname"
+            ><br><br>
+            <label for="lname">Last name:</label>
+            <input
+                type="text"
+                id="lname"
+                name="lname"
+            ><br><br>
+            <input
+                type="submit"
+                value="Submit"
+            >
+        </form>
     </div>
+    <script type="text/javascript">
+        document.body.innerHTML +=
+            "<p><input type = 'button' value = 'Add New Patient' onClick = 'addNewPatient()'></p>";
+    </script>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
       Temporarily disable cerner-smart-embeddable-lib
