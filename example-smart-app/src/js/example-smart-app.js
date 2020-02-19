@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('20')
+      console.log('21')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -137,6 +137,7 @@
           }]
         })
         console.log('before pt obv')
+        console.log(pt)
 
         $.when(pt, obv).fail(onError);
 
