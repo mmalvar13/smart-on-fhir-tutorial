@@ -61,7 +61,12 @@
       });
     }
 
-    function addNewPatient() {
+
+    window.addNewPatient = function(p) {
+
+
+      console.log('inside add new patient')
+      console.log(p)
 
       FHIR.oauth2.ready(function(smart) {
         var resource = {
@@ -120,7 +125,7 @@
     }
 
     function onReady(smart) {
-      console.log('35')
+      console.log('36')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
