@@ -138,6 +138,7 @@
         })
         console.log('before pt obv')
         console.log(pt)
+        console.log('after pt')
 
         $.when(pt, obv).fail(onError);
 
