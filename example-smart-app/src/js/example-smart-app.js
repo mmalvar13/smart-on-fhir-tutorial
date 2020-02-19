@@ -10,8 +10,9 @@
     function onReady(smart) {
       console.log('6')
       console.log(smart.server.serviceUrl)
-      const client = FHIR.client('https://server/fhir-ehr.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca');
-      console.log(client)
+      console.log(FHIR.client())
+      // const client = FHIR.client('69cbc6b1ca');
+      // console.log(client)
 
 
       // console.log(client.request("AllergyIntolerance"))
