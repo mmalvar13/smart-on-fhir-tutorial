@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('34')
+      console.log('35')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -79,7 +79,6 @@
         });
 
 
-        // console.log(testpatient)
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
@@ -110,11 +109,10 @@
         console.log(pt)
         console.log('after pt')
 
-        $.when(pt, obv, testpatient).fail(onError);
+        $.when(pt, obv).fail(onError);
 
-        $.when(pt, obv, allergies, updateAllergies, testpatient).done(function(patient, obv, allergies, updateAllergies, testpatient) {
+        $.when(pt, obv, allergies, updateAllergies).done(function(patient, obv, allergies, updateAllergies) {
           console.log('inside')
-          console.log('testpatient', testpatient)
           console.log('allergies', allergies)
           console.log('update allergies', updateAllergies)
           console.log('after update allergiesgi')
