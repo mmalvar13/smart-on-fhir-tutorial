@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("45");
+            console.log("46");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -278,8 +278,10 @@
     };
 
     window.addPatient = function(p) {
+        console.log("inside add patient");
         FHIR.oauth2.ready(function(smart) {
             console.log("inside add patient");
+            console.log(smart);
             var resource = {
                 resourceType: "Patient",
                 text: {
@@ -319,12 +321,15 @@
 
             // Create the patient and then update its active flag to "true"
             smart.api.create({resource: resource}).done(function(r) {
+                console.log("inside create");
+                console.log(r);
                 // NOTE that the patient will now have new "id" assigned by the
                 // server. The next request will be PUT (update) and that id will
                 // be required...
                 var patient = r.data;
                 patient["active"] = true;
                 smart.api.update({resource: patient}).done(function(r) {
+                    console.log("inside done");
                     var out = JSON.stringify(r.data, null, "   ");
                     document.getElementsByTagName("pre")[0].innerText =
                         "Now " +
