@@ -79,6 +79,8 @@
             console.log(p);
 
             FHIR.oauth2.ready(function(smart) {
+                console.log("inside outah2 ready");
+                console.log(smart);
                 var resource = {
                     resourceType: "Patient",
                     text: {
@@ -106,8 +108,8 @@
                     name: [
                         {
                             use: "official",
-                            family: [first],
-                            given: [last]
+                            family: ["testing"],
+                            given: ["patient"]
                         }
                     ],
                     gender: "female",
