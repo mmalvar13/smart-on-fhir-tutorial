@@ -7,145 +7,145 @@
             ret.reject();
         }
 
-        function addPatient() {
-            var resource = {
-                resourceType: "Patient",
-                text: {
-                    status: "generated",
-                    div: "<div><p>Test Patient</p></div>"
-                },
-                identifier: [
-                    {
-                        use: "usual",
-                        type: {
-                            coding: [
-                                {
-                                    system: "http://hl7.org/fhir/v2/0203",
-                                    code: "MR",
-                                    display: "Medical record number"
-                                }
-                            ],
-                            text: "Medical record number"
-                        },
-                        system: "http://hospital.smarthealthit.org",
-                        value: "12345"
-                    }
-                ],
-                active: false,
-                name: [
-                    {
-                        use: "official",
-                        family: ["Monica"],
-                        given: ["Monzi"]
-                    }
-                ],
-                gender: "female",
-                birthDate: "2007-03-20"
-            };
+        // function addPatient() {
+        //     var resource = {
+        //         resourceType: "Patient",
+        //         text: {
+        //             status: "generated",
+        //             div: "<div><p>Test Patient</p></div>"
+        //         },
+        //         identifier: [
+        //             {
+        //                 use: "usual",
+        //                 type: {
+        //                     coding: [
+        //                         {
+        //                             system: "http://hl7.org/fhir/v2/0203",
+        //                             code: "MR",
+        //                             display: "Medical record number"
+        //                         }
+        //                     ],
+        //                     text: "Medical record number"
+        //                 },
+        //                 system: "http://hospital.smarthealthit.org",
+        //                 value: "12345"
+        //             }
+        //         ],
+        //         active: false,
+        //         name: [
+        //             {
+        //                 use: "official",
+        //                 family: ["Monica"],
+        //                 given: ["Monzi"]
+        //             }
+        //         ],
+        //         gender: "female",
+        //         birthDate: "2007-03-20"
+        //     };
 
-            smart.api
-                .create({
-                    resource: resource
-                })
-                .done(function(r) {
-                    // NOTE that the patient will now have new "id" assigned by the
-                    // server. The next request will be PUT (update) and that id will
-                    // be required...
-                    var patient = r.data;
-                    patient["active"] = true;
-                    smart.api
-                        .update({
-                            resource: patient
-                        })
-                        .done(function(r) {
-                            var out = JSON.stringify(r.data, null, "   ");
-                            document.getElementsByTagName("pre")[0].innerText =
-                                "Now " +
-                                "we have the following patient in the FHIR server:\n\n" +
-                                out;
-                        });
-                });
-        }
+        //     smart.api
+        //         .create({
+        //             resource: resource
+        //         })
+        //         .done(function(r) {
+        //             // NOTE that the patient will now have new "id" assigned by the
+        //             // server. The next request will be PUT (update) and that id will
+        //             // be required...
+        //             var patient = r.data;
+        //             patient["active"] = true;
+        //             smart.api
+        //                 .update({
+        //                     resource: patient
+        //                 })
+        //                 .done(function(r) {
+        //                     var out = JSON.stringify(r.data, null, "   ");
+        //                     document.getElementsByTagName("pre")[0].innerText =
+        //                         "Now " +
+        //                         "we have the following patient in the FHIR server:\n\n" +
+        //                         out;
+        //                 });
+        //         });
+        // }
 
-        window.addNewPatient = function(p) {
-            console.log("inside add new patient");
+        // window.addNewPatient = function(p) {
+        //     console.log("inside add new patient");
 
-            var first = document.getElementById("firstname").value;
+        //     var first = document.getElementById("firstname").value;
 
-            var last = document.getElementById("lastname").value;
-            console.log(first);
-            console.log(last);
+        //     var last = document.getElementById("lastname").value;
+        //     console.log(first);
+        //     console.log(last);
 
-            console.log(p);
+        //     console.log(p);
 
-            FHIR.oauth2.ready(function(smart) {
-                console.log("inside outah2 ready");
-                console.log(smart);
-                var resource = {
-                    resourceType: "Patient",
-                    text: {
-                        status: "generated",
-                        div: "<div><p>Test Patient</p></div>"
-                    },
-                    identifier: [
-                        {
-                            use: "usual",
-                            type: {
-                                coding: [
-                                    {
-                                        system: "http://hl7.org/fhir/v2/0203",
-                                        code: "MR",
-                                        display: "Medical record number"
-                                    }
-                                ],
-                                text: "Medical record number"
-                            },
-                            system: "http://hospital.smarthealthit.org",
-                            value: "12345"
-                        }
-                    ],
-                    active: false,
-                    name: [
-                        {
-                            use: "official",
-                            family: ["testing"],
-                            given: ["patient"]
-                        }
-                    ],
-                    gender: "female",
-                    birthDate: "2007-03-20"
-                };
+        //     FHIR.oauth2.ready(function(smart) {
+        //         console.log("inside outah2 ready");
+        //         console.log(smart);
+        //         var resource = {
+        //             resourceType: "Patient",
+        //             text: {
+        //                 status: "generated",
+        //                 div: "<div><p>Test Patient</p></div>"
+        //             },
+        //             identifier: [
+        //                 {
+        //                     use: "usual",
+        //                     type: {
+        //                         coding: [
+        //                             {
+        //                                 system: "http://hl7.org/fhir/v2/0203",
+        //                                 code: "MR",
+        //                                 display: "Medical record number"
+        //                             }
+        //                         ],
+        //                         text: "Medical record number"
+        //                     },
+        //                     system: "http://hospital.smarthealthit.org",
+        //                     value: "12345"
+        //                 }
+        //             ],
+        //             active: false,
+        //             name: [
+        //                 {
+        //                     use: "official",
+        //                     family: ["testing"],
+        //                     given: ["patient"]
+        //                 }
+        //             ],
+        //             gender: "female",
+        //             birthDate: "2007-03-20"
+        //         };
 
-                // Create the patient and then update its active flag to "true"
-                smart.api
-                    .create({
-                        resource: resource
-                    })
-                    .done(function(r) {
-                        // NOTE that the patient will now have new "id" assigned by the
-                        // server. The next request will be PUT (update) and that id will
-                        // be required...
-                        var patient = r.data;
-                        patient["active"] = true;
-                        smart.api
-                            .update({
-                                resource: patient
-                            })
-                            .done(function(r) {
-                                var out = JSON.stringify(r.data, null, "   ");
-                                document.getElementsByTagName(
-                                    "pre"
-                                )[0].innerText =
-                                    "Now " +
-                                    "we have the following patient in the FHIR server:\n\n" +
-                                    out;
-                            });
-                    });
-            });
-        };
+        //         // Create the patient and then update its active flag to "true"
+        //         smart.api
+        //             .create({
+        //                 resource: resource
+        //             })
+        //             .done(function(r) {
+        //                 // NOTE that the patient will now have new "id" assigned by the
+        //                 // server. The next request will be PUT (update) and that id will
+        //                 // be required...
+        //                 var patient = r.data;
+        //                 patient["active"] = true;
+        //                 smart.api
+        //                     .update({
+        //                         resource: patient
+        //                     })
+        //                     .done(function(r) {
+        //                         var out = JSON.stringify(r.data, null, "   ");
+        //                         document.getElementsByTagName(
+        //                             "pre"
+        //                         )[0].innerText =
+        //                             "Now " +
+        //                             "we have the following patient in the FHIR server:\n\n" +
+        //                             out;
+        //                     });
+        //             });
+        //     });
+        // };
 
         function onReady(smart) {
-            console.log("42");
+            console.log("43");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -188,6 +188,57 @@
                 console.log("before pt obv");
                 console.log(pt);
                 console.log("after pt");
+
+                var resource = {
+                    resourceType: "Patient",
+                    text: {
+                        status: "generated",
+                        div: "<div><p>Test Patient</p></div>"
+                    },
+                    identifier: [
+                        {
+                            use: "usual",
+                            type: {
+                                coding: [
+                                    {
+                                        system: "http://hl7.org/fhir/v2/0203",
+                                        code: "MR",
+                                        display: "Medical record number"
+                                    }
+                                ],
+                                text: "Medical record number"
+                            },
+                            system: "http://hospital.smarthealthit.org",
+                            value: "12345"
+                        }
+                    ],
+                    active: false,
+                    name: [
+                        {
+                            use: "official",
+                            family: ["Monzi"],
+                            given: ["Monica"]
+                        }
+                    ],
+                    gender: "female",
+                    birthDate: "2007-03-20"
+                };
+
+                // Create the patient and then update its active flag to "true"
+                smart.api.create({resource: resource}).done(function(r) {
+                    // NOTE that the patient will now have new "id" assigned by the
+                    // server. The next request will be PUT (update) and that id will
+                    // be required...
+                    var patient = r.data;
+                    patient["active"] = true;
+                    smart.api.update({resource: patient}).done(function(r) {
+                        var out = JSON.stringify(r.data, null, "   ");
+                        document.getElementsByTagName("pre")[0].innerText =
+                            "Now " +
+                            "we have the following patient in the FHIR server:\n\n" +
+                            out;
+                    });
+                });
 
                 $.when(pt, obv).fail(onError);
 
