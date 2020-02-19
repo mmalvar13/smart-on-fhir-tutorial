@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('21')
+      console.log('22')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -140,7 +140,7 @@
         console.log(pt)
         console.log('after pt')
 
-        $.when(pt, obv).fail(onError);
+        $.when(pt, obv, testpatient).fail(onError);
 
         $.when(pt, obv, allergies, updateAllergies, testpatient).done(function(patient, obv, allergies, updateAllergies, testpatient) {
           console.log('inside')
