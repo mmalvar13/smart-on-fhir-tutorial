@@ -65,7 +65,7 @@
     window.addNewPatient = function(p) {
       console.log('inside add new patient')
 
-      var first = document.getElementById("firstname");
+      var first = document.getElementById("firstname").value;
 
       var last = document.getElementById("lastname").value;
       console.log(first);
