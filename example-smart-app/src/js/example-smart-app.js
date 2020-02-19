@@ -7,79 +7,77 @@
             ret.reject();
         }
 
-        // function addPatient() {
-        //     var resource = {
-        //         resourceType: "Patient",
-        //         text: {
-        //             status: "generated",
-        //             div: "<div><p>Test Patient</p></div>"
-        //         },
-        //         identifier: [
-        //             {
-        //                 use: "usual",
-        //                 type: {
-        //                     coding: [
-        //                         {
-        //                             system: "http://hl7.org/fhir/v2/0203",
-        //                             code: "MR",
-        //                             display: "Medical record number"
-        //                         }
-        //                     ],
-        //                     text: "Medical record number"
-        //                 },
-        //                 system: "http://hospital.smarthealthit.org",
-        //                 value: "12345"
-        //             }
-        //         ],
-        //         active: false,
-        //         name: [
-        //             {
-        //                 use: "official",
-        //                 family: ["Monica"],
-        //                 given: ["Monzi"]
-        //             }
-        //         ],
-        //         gender: "female",
-        //         birthDate: "2007-03-20"
-        //     };
+        function addPatient() {
+            var resource = {
+                resourceType: "Patient",
+                text: {
+                    status: "generated",
+                    div: "<div><p>Test Patient</p></div>"
+                },
+                identifier: [
+                    {
+                        use: "usual",
+                        type: {
+                            coding: [
+                                {
+                                    system: "http://hl7.org/fhir/v2/0203",
+                                    code: "MR",
+                                    display: "Medical record number"
+                                }
+                            ],
+                            text: "Medical record number"
+                        },
+                        system: "http://hospital.smarthealthit.org",
+                        value: "12345"
+                    }
+                ],
+                active: false,
+                name: [
+                    {
+                        use: "official",
+                        family: ["Monica"],
+                        given: ["Monzi"]
+                    }
+                ],
+                gender: "female",
+                birthDate: "2007-03-20"
+            };
 
-        //     smart.api
-        //         .create({
-        //             resource: resource
-        //         })
-        //         .done(function(r) {
-        //             // NOTE that the patient will now have new "id" assigned by the
-        //             // server. The next request will be PUT (update) and that id will
-        //             // be required...
-        //             var patient = r.data;
-        //             patient["active"] = true;
-        //             smart.api
-        //                 .update({
-        //                     resource: patient
-        //                 })
-        //                 .done(function(r) {
-        //                     var out = JSON.stringify(r.data, null, "   ");
-        //                     document.getElementsByTagName("pre")[0].innerText =
-        //                         "Now " +
-        //                         "we have the following patient in the FHIR server:\n\n" +
-        //                         out;
-        //                 });
-        //         });
-        // }
+            smart.api
+                .create({
+                    resource: resource
+                })
+                .done(function(r) {
+                    // NOTE that the patient will now have new "id" assigned by the
+                    // server. The next request will be PUT (update) and that id will
+                    // be required...
+                    var patient = r.data;
+                    patient["active"] = true;
+                    smart.api
+                        .update({
+                            resource: patient
+                        })
+                        .done(function(r) {
+                            var out = JSON.stringify(r.data, null, "   ");
+                            document.getElementsByTagName("pre")[0].innerText =
+                                "Now " +
+                                "we have the following patient in the FHIR server:\n\n" +
+                                out;
+                        });
+                });
+        }
 
         window.addNewPatient = function(p) {
             console.log("inside add new patient");
 
-            var first = document.getElementById("firstname").value;
-
-            var last = document.getElementById("lastname").value;
+            var first = document.getElementById("fname").value;
+            var last = document.getElementById("lname").value;
             console.log(first);
             console.log(last);
 
             console.log(p);
 
             FHIR.oauth2.ready(function(smart) {
-                console.log("inside oauth patient", smart);
                 var resource = {
                     resourceType: "Patient",
                     text: {
@@ -125,15 +123,12 @@
                         // server. The next request will be PUT (update) and that id will
                         // be required...
                         var patient = r.data;
-                        console.log(patient);
                         patient["active"] = true;
                         smart.api
                             .update({
                                 resource: patient
                             })
                             .done(function(r) {
-                                console.log("inside done create");
-                                console.log(r);
                                 var out = JSON.stringify(r.data, null, "   ");
                                 document.getElementsByTagName(
                                     "pre"
@@ -146,47 +141,13 @@
             });
         };
 
-        // window.updatePatient = function(p) {
-        //     console.log("inside update patient");
-        //     console.log(p);
-
-        //     var birthdate = document.getElementById("birthdateUpdate").value;
-        //     console.log("birthdate", birthdate);
-
-        //     var resource = {
-        //         ResourceType: "Patient",
-        //         birthDate: birthdate
-        //     };
-
-        //     FHIR.oauth2.ready(function(smart) {
-        //         console.log("inside update");
-        //         smart.api
-        //             .update({
-        //                 resource: resource
-        //             })
-        //             .done(function(r) {
-        //                 console.log("inside done");
-        //                 console.log(r);
-        //                 var out = JSON.stringify(r.data, null, "   ");
-        //                 document.getElementsByTagName(
-        //                     "bdatechange"
-        //                 )[0].innerText =
-        //                     "Now " +
-        //                     "we have the following patient bday in the FHIR server:\n\n" +
-        //                     out;
-        //             });
-        //     });
-        // };
-
         function onReady(smart) {
-            console.log("47");
+            console.log("39");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
                 var user = smart.user;
                 var pt = patient.read();
-
-                console.log(smart.patient);
 
                 var obv = smart.patient.api.fetchAll({
                     type: "Observation",
@@ -221,9 +182,9 @@
                         }
                     ]
                 });
-                // console.log("before pt obv");
-                // console.log(pt);
-                // console.log("after pt");
+                console.log("before pt obv");
+                console.log(pt);
+                console.log("after pt");
 
                 $.when(pt, obv).fail(onError);
 
