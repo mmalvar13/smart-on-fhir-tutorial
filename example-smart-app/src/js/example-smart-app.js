@@ -321,10 +321,10 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-    $('#substance').html(p.allergies[0].substance);
-    $('#status').html(p.allergies[0].status)
-    $('#criticality').html(p.allergies[0].criticality)
-    $('#category').html(p.allergies[0].category)
+    // $('#substance').html(p.allergies[0].substance);
+    // $('#status').html(p.allergies[0].status)
+    // $('#criticality').html(p.allergies[0].criticality)
+    // $('#category').html(p.allergies[0].category)
   };
 
 })(window);
