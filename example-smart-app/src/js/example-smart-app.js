@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('26')
+      console.log('27')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -30,16 +30,16 @@
           "criticality": "CRITL",
           "recordedDate": "2017-02-28T15:03:00-06:00",
           "status": "active",
-          "type": "AllergyIntolerance",
+          "type": "allergy",
           "onset": "2015-12-15T00:00:00Z",
           "patient": {
-            "reference": "Patient/4342010"
+            "reference": "Patient/1316020"
           },
           "reporter": {
-            "reference": "Patient/4342010"
+            "reference": "Patient/1316020"
           },
           "recorder": {
-            "reference": "Practitioner/1326007"
+            "reference": "Practitioner/1316007"
           },
           "reaction": [{
             "manifestation": [{
@@ -48,7 +48,7 @@
           }],
           "note": {
             "authorReference": {
-              "reference": "Practitioner/605926"
+              "reference": "Practitioner/41562141"
             },
             "time": "2017-02-28T09:03:00Z",
             "text": "Note 1"
