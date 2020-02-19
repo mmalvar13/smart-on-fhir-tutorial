@@ -21,8 +21,8 @@
         console.log(smart.user)
         console.log(smart.patient.api)
 
-        var hey = smart.api.create()
-        console.log(hey)
+        // var hey = smart.api.create()
+        // console.log(hey)
 
         var testpatient = smart.api.create({
           "resourceType": "Patient",
