@@ -8,27 +8,14 @@
     }
 
     function onReady(smart) {
-      console.log('11')
+      console.log('12')
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var user = smart.user;
         var pt = patient.read();
         var userRead = user.read();
 
-        var trythis = smart.request()
 
-        console.log(trythis)
-
-        // var allin = smart.request("AllergyIntolerance")
-        // console.log(allin)
-
-        console.log(smart)
-
-        // client.request({
-        //   url: "AllergyIntolerance?patient=4342008"g,
-        //   method: "PUT"
-        //   body:
-        // })
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
@@ -58,11 +45,14 @@
 
         $.when(pt, obv).fail(onError);
 
-        $.when(pt, obv, allergies, updateAllergies).done(function(patient, obv, allergies, updateAllergies) {
+        $.when(pt, obv, allergies, updateAllergies, userRead).done(function(patient, obv, allergies, updateAllergies, userRead) {
           console.log('inside')
           console.log('allergies', allergies)
           console.log('update allergies', updateAllergies)
           console.log('after update allergiesgi')
+          console.log('userread', userRead)
+          console.log('pt', pt)
+          console.log('obv', obv)
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
