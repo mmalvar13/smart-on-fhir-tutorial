@@ -63,9 +63,14 @@
 
 
     window.addNewPatient = function(p) {
-
-
       console.log('inside add new patient')
+
+      var first = document.getElementById("fname").value
+      var last = document.getElementById("lname").value
+      console.log(first)
+      console.log(last)
+
+
       console.log(p)
 
       FHIR.oauth2.ready(function(smart) {
@@ -92,10 +97,10 @@
           "name": [{
             "use": "official",
             "family": [
-              "Adam"
+              first
             ],
             "given": [
-              "Adamson"
+              last
             ]
           }],
           "gender": "female",
@@ -125,7 +130,7 @@
     }
 
     function onReady(smart) {
-      console.log('38')
+      console.log('39')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
