@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('27')
+      console.log('28')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -30,7 +30,6 @@
           "criticality": "CRITL",
           "recordedDate": "2017-02-28T15:03:00-06:00",
           "status": "active",
-          "type": "allergy",
           "onset": "2015-12-15T00:00:00Z",
           "patient": {
             "reference": "Patient/1316020"
