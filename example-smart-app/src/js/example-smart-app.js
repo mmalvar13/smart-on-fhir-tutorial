@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('16')
+      console.log('17')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -17,8 +17,12 @@
         var userRead = user.read();
 
         console.log('after user read')
-        console.log(smart.user.api)
+        console.log(smart)
+        console.log(smart.user)
         console.log(smart.patient.api)
+
+        var hey = smart.patient.create()
+        console.log(hey)
 
         var testpatient = smart.patient.create({
           "resourceType": "Patient",
