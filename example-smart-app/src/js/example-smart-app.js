@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('22')
+      console.log('23')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -25,7 +25,7 @@
         // console.log(hey)
 
         var testpatient = smart.api.create({
-          "resourceType": "Patient",
+          "type": "Patient",
           "identifier": [{
             "assigner": {
               "reference": "Organization/619848"
