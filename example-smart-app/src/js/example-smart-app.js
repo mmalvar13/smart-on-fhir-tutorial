@@ -131,6 +131,8 @@
                                 resource: patient
                             })
                             .done(function(r) {
+                                console.log("inside done create");
+                                console.log(r);
                                 var out = JSON.stringify(r.data, null, "   ");
                                 document.getElementsByTagName(
                                     "pre"
@@ -176,7 +178,7 @@
         };
 
         function onReady(smart) {
-            console.log("43");
+            console.log("45");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
