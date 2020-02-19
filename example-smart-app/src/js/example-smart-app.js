@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('32')
+      console.log('33')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
