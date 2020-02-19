@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('28')
+      console.log('29')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -25,39 +25,87 @@
         // console.log(hey)
 
         var testpatient = smart.api.create({
-          "type": "AllergyIntolerance",
-          "category": "medication",
-          "criticality": "CRITL",
-          "recordedDate": "2017-02-28T15:03:00-06:00",
-          "status": "active",
-          "onset": "2015-12-15T00:00:00Z",
-          "patient": {
-            "reference": "Patient/1316020"
-          },
-          "reporter": {
-            "reference": "Patient/1316020"
-          },
-          "recorder": {
-            "reference": "Practitioner/1316007"
-          },
-          "reaction": [{
-            "manifestation": [{
-              "text": "Hives"
-            }]
+          "resourceType": "Patient",
+          "identifier": [{
+            "assigner": {
+              "reference": "Organization/619848"
+            }
           }],
-          "note": {
-            "authorReference": {
-              "reference": "Practitioner/41562141"
+          "active": true,
+          "name": [{
+              "use": "official",
+              "family": [
+                "Wolf"
+              ],
+              "given": [
+                "Person",
+                "Name"
+              ],
+              "period": {
+                "start": "2010-05-17T14:54:31.000Z"
+              }
             },
-            "time": "2017-02-28T09:03:00Z",
-            "text": "Note 1"
-          },
-          "substance": {
+            {
+              "use": "usual",
+              "given": [
+                "Bigby"
+              ],
+              "period": {
+                "start": "2012-05-22T15:45:50.000Z"
+              }
+            }
+          ],
+          "telecom": [{
+            "system": "phone",
+            "value": "8168229121",
+            "use": "home",
+            "period": {
+              "start": "2012-05-17T15:33:18.000Z"
+            }
+          }],
+          "gender": "male",
+          "birthDate": "1990-09-15",
+          "address": [{
+            "use": "home",
+            "line": [
+              "121212 Metcalf Drive",
+              "Apartment 403"
+            ],
+            "city": "Kansas City",
+            "district": "Jackson",
+            "state": "KS",
+            "postalCode": "64199",
+            "country": "United States of America",
+            "period": {
+              "start": "2012-05-17T15:33:18.000Z"
+            }
+          }],
+          "maritalStatus": {
             "coding": [{
-              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-              "code": "3498"
-            }]
-          }
+              "system": "http://hl7.org/fhir/v3/NullFlavor",
+              "code": "UNK",
+              "display": "Unknown"
+            }],
+            "text": "Unknown"
+          },
+          "communication": [{
+            "language": {
+              "coding": [{
+                "system": "urn:ietf:bcp:47",
+                "code": "en",
+                "display": "English"
+              }],
+              "text": "English"
+            },
+            "preferred": true
+          }],
+          "careProvider": [{
+              "reference": "Practitioner/4594010"
+            },
+            {
+              "reference": "Practitioner/4646007"
+            }
+          ]
         })
 
 
