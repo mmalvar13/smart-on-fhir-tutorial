@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('24')
+      console.log('25')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -25,48 +25,40 @@
         // console.log(hey)
 
         var testpatient = smart.api.create({
-          "type": "Patient",
-          "active": true,
-          "name": [{
-              "use": "official",
-              "family": [
-                "Wolf"
-              ],
-              "given": [
-                "Person",
-                "Name"
-              ],
-              "period": {
-                "start": "2010-05-17T14:54:31.000Z"
-              }
+          "resourceType": "AllergyIntolerance",
+          "category": "medication",
+          "criticality": "CRITL",
+          "recordedDate": "2017-02-28T15:03:00-06:00",
+          "status": "active",
+          "type": "allergy",
+          "onset": "2015-12-15T00:00:00Z",
+          "patient": {
+            "reference": "Patient/4342010"
+          },
+          "reporter": {
+            "reference": "Patient/4342010"
+          },
+          "recorder": {
+            "reference": "Practitioner/1326007"
+          },
+          "reaction": [{
+            "manifestation": [{
+              "text": "Hives"
+            }]
+          }],
+          "note": {
+            "authorReference": {
+              "reference": "Practitioner/605926"
             },
-            {
-              "use": "usual",
-              "given": [
-                "Bigby"
-              ],
-              "period": {
-                "start": "2012-05-22T15:45:50.000Z"
-              }
-            }
-          ],
-          "gender": "male",
-          "birthDate": "1990-09-15",
-          "address": [{
-            "use": "home",
-            "line": [
-              "121212 Metcalf Drive",
-              "Apartment 403"
-            ],
-            "city": "Kansas City",
-            "district": "Jackson",
-            "state": "KS",
-            "postalCode": "64199",
-            "country": "United States of America",
-            "period": {
-              "start": "2012-05-17T15:33:18.000Z"
-            }
-          }]
+            "time": "2017-02-28T09:03:00Z",
+            "text": "Note 1"
+          },
+          "substance": {
+            "coding": [{
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "3498"
+            }]
+          }
         })
 
 
