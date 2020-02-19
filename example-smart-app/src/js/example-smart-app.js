@@ -25,7 +25,7 @@
         // console.log(hey)
 
         var testpatient = smart.api.create({
-          "resourceType": "AllergyIntolerance",
+          "type": "AllergyIntolerance",
           "category": "medication",
           "criticality": "CRITL",
           "recordedDate": "2017-02-28T15:03:00-06:00",
