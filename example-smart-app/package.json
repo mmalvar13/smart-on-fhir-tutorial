@@ -1,0 +1,9 @@
+{
+    "name": "smart-on-fhir",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "fhirclient": "^2.3.1"
+    },
+    "devDependencies": {}
+}
