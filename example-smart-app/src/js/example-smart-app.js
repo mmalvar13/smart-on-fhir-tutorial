@@ -26,41 +26,57 @@
 
 
 
-        var testpatient = smart.api.create({
-          "type": "AllergyIntolerance",
-          "query": {
-            "resourceType": "AllergyIntolerance",
-            "recordedDate": "2015-10-14T13:13:20-06:00",
-            "patient": {
-              "reference": "Patient/5366327"
-            },
-            "reporter": {
-              "reference": "Patient/5366327"
-            },
-            "substance": {
+        var resource = {
+          "resourceType": "Patient",
+          "text": {
+            "status": "generated",
+            "div": "<div><p>Test Patient</p></div>"
+          },
+          "identifier": [{
+            "use": "usual",
+            "type": {
               "coding": [{
-                "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
-                "code": "4125",
-                "display": "Ethiodized oil"
-              }]
+                "system": "http://hl7.org/fhir/v2/0203",
+                "code": "MR",
+                "display": "Medical record number"
+              }],
+              "text": "Medical record number"
             },
-            "status": "resolved",
-            "criticality": "CRITU",
-            "type": "food",
-            "note": {
-              "text": "Patient complains of discomfort"
-            },
-            "reaction": [{
-              "manifestation": [{
-                "coding": [{
-                  "system": "http://snomed.info/sct",
-                  "code": "39579001",
-                  "display": "Anaphylactic reaction"
-                }]
-              }]
-            }]
-          }
-        })
+            "system": "http://hospital.smarthealthit.org",
+            "value": "12345"
+          }],
+          "active": false,
+          "name": [{
+            "use": "official",
+            "family": [
+              "Patient"
+            ],
+            "given": [
+              "Test"
+            ]
+          }],
+          "gender": "female",
+          "birthDate": "2007-03-20",
+        };
+
+        smart.api.create({
+          resource: resource
+        }).done(function(r) {
+
+          // NOTE that the patient will now have new "id" assigned by the
+          // server. The next request will be PUT (update) and that id will
+          // be required...
+          var patient = r.data;
+          patient["active"] = true;
+          smart.api.update({
+            resource: patient
+          }).done(function(r) {
+            var out = JSON.stringify(r.data, null, "   ");
+            document.getElementsByTagName("pre")[0].innerText = "Now " +
+              "we have the following patient in the FHIR server:\n\n" +
+              out;
+          });
+        });
 
 
         console.log(testpatient)
