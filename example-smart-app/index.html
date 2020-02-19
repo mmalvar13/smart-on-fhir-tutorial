@@ -2,160 +2,67 @@
 <html lang="en">
 
 <head>
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="IE=edge"
-    />
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css"
-    />
-    <meta
-        http-equiv="Content-Type"
-        content="text/html; charset=utf-8"
-    />
-    <title>mmalvar13 Example-SMART-App</title>
-
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="./src/css/example-smart-app.css"
-    />
-    <!--
-      Temporarily disable cerner-smart-embeddable-lib
-      <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
-    -->
+    <meta charset="UTF-8" />
+    <title>Example SMART App</title>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+    <style>
+        #patient,
+        #meds {
+            font-family: Monaco, monospace;
+            white-space: pre;
+            font-size: 13px;
+            height: 30vh;
+            overflow: scroll;
+            border: 1px solid #CCC;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-    <script src="./lib/js/cerner-smart-embeddable-lib-1.0.0.min.js"></script> -->
-    <div id="errors"></div>
-    <div
-        id="loading"
-        class="spinner"
-    >
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
-    <div id="holder">
-        <h2>Example-SMART-App</h2>
+    <h4>Current Patient</h4>
+    <div id="patient">Loading...</div>
+    <br />
+    <h4>Medications</h4>
+    <div id="meds">Loading...</div>
+    <script type="text/javascript">
+        FHIR.oauth2.ready().then(function(client) {
 
-        <h2>Patient Resource</h2>
-        <table>
-            <tr>
-                <th>First Name:</th>
-                <td id="fname"></td>
-            </tr>
-            <tr>
-                <th>Last Name:</th>
-                <td id="lname"></td>
-            </tr>
-            <tr>
-                <th>Gender:</th>
-                <td id="gender"></td>
-            </tr>
-            <tr>
-                <th>Date of Birth:</th>
-                <td id="birthdate"></td>
-            </tr>
-        </table>
+            // Render the current patient (or any error)
+            client.patient.read().then(
+                function(pt) {
+                    document.getElementById("patient").innerText = JSON.stringify(pt, null, 4);
+                },
+                function(error) {
+                    document.getElementById("patient").innerText = error.stack;
+                }
+            );
 
-        <h2>Observation Resource</h2>
-        <table>
-            <tr>
-                <th>Height:</th>
-                <td id="height"></td>
-            </tr>
-            <tr>
-                <th>Systolic Blood Pressure:</th>
-                <td id="systolicbp"></td>
-            </tr>
-            <tr>
-                <th>Diastolic Blood Pressure:</th>
-                <td id="diastolicbp"></td>
-            </tr>
-            <tr>
-                <th>LDL:</th>
-                <td id="ldl"></td>
-            </tr>
-            <tr>
-                <th>HDL:</th>
-                <td id="hdl"></td>
-            </tr>
-        </table>
+            // Get MedicationRequests for the selected patient
+            client.request("/MedicationRequest?patient=" + client.patient.id, {
+                    resolveReferences: ["medicationReference"],
+                    graph: true
+                })
 
-        <h2>Allergy Intolerance Resource</h2>
-        <table>
-            <tr>
-                <th>Substance:</th>
-                <td id="substance"></td>
-            </tr>
-            <tr>
-                <th>Status:</th>
-                <td id="status"></td>
-            </tr>
-            <tr>
-                <th>Criticality:</th>
-                <td id="criticality"></td>
-            </tr>
-            <tr>
-                <th>Category:</th>
-                <td id="category"></td>
-            </tr>
-        </table>
-    </div>
-    <!-- Required JS files to enable this page to embed within an MPage -->
-    <!--
-      Temporarily disable cerner-smart-embeddable-lib
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js'></script>
-      <script src='./lib/js/cerner-smart-embeddable-lib-1.0.0.min.js'></script>
-    -->
-
-    <!-- Application-level javascript-->
-    <script src="./src/js/example-smart-app.js"></script>
-
-    <!-- FHIR Client JS Library -->
-    <script src="./lib/js/fhir-client-v0.1.12.js"></script>
-
-    <!-- <script src="./lib/fhir-client-v0.1.11.js"></script> -->
-
-    <!-- <script src='./lib/es6-shim-0.35.1.min.js'></script> -->
+                // Reject if no MedicationRequests are found
+                .then(function(data) {
+                    if (!data.entry || !data.entry.length) {
+                        throw new Error("No medications found for the selected patient");
+                    }
+                    return data.entry;
+                })
 
 
+                // Render the current patient's medications (or any error)
+                .then(
+                    function(meds) {
+                        document.getElementById("meds").innerText = JSON.stringify(meds, null, 4);
+                    },
+                    function(error) {
+                        document.getElementById("meds").innerText = error.stack;
+                    }
+                );
 
-
-    <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
-    <!-- https://github.com/cerner/fhir-client-cerner-additions -->
-    <!-- <script src="./lib/fhir-client-cerner-additions-1.0.0.js"></script> -->
-
-
-
-    <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
-    <!-- https://github.com/cerner/fhir-client-cerner-additions -->
-    <script src="./lib/js/fhir-client-cerner-additions-1.0.0.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- <script>
-    FHIR.oauth2.ready()
-      .then(client => client.request("Patient"))
-      .then(console.log)
-      .catch(console.error);
-  </script> -->
-    <script>
-        extractData().then(
-            //Display Patient Demographics and Observations if extractData was success
-            function(p) {
-                drawVisualization(p);
-            },
-
-            //Display 'Failed to call FHIR Service' if extractData failed
-            function() {
-                $("#loading").hide();
-                $("#errors").html("<p> Failed to call FHIR Service </p>");
-            }
-        );
+        }).catch(console.error);
     </script>
 </body>
 

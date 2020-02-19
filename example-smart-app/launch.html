@@ -1,64 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta
-        http-equiv="Content-Type"
-        content="text/html; charset=utf-8"
-    />
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="IE=edge"
-    />
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css"
-    />
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="./src/css/example-smart-app.css"
-    />
-    <!--
-      Temporarily disable cerner-smart-embeddable-lib
-      <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
-    -->
-    <title>Example-SMART-App</title>
+    <meta charset="UTF-8" />
+    <title>Launch My APP</title>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
 </head>
 
 <body>
-    <!-- Required JS files to enable this page to embed within an MPage -->
-
-    <!-- Temporarily disable cerner-smart-embeddable-lib -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-        <script src="./lib/js/cerner-smart-embeddable-lib-1.0.0.min.js"></script> -->
-
-    <!-- FHIR Client JS Library -->
-    <script src="./lib/js/fhir-client-v0.1.12.js"></script>
-
-    <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
-    <!-- https://github.com/cerner/fhir-client-cerner-additions -->
-    <!-- <script src="./lib/js/fhir-client-cerner-additions-1.0.0.js"></script> -->
-    <!-- <script src="./node_modules/fhirclient/build/fhir-client.js"></script> -->
-
-    <!-- FHIR Client JS Library -->
-
-    <!-- <script src='./lib/fhir-client-v0.1.11.js'></script> -->
-    <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
-    <!-- https://github.com/cerner/fhir-client-cerner-additions -->
-    <script src='./lib/fhir-client-cerner-additions-1.0.0.js'></script>
     <script>
         FHIR.oauth2.authorize({
-            client_id: "b59686f8-4e2f-4ca2-a481-c7853a9c5b43",
-            scope: "patient/Patient.read patient/Patient.write patient/Observation.read patient/AllergyIntolerance.read patient/AllergyIntolerance.write launch online_access openid profile"
+
+            // The client_id that you should have obtained after registering a client at
+            // the EHR.
+            clientId: "b59686f8-4e2f-4ca2-a481-c7853a9c5b43",
+
+            // The scopes that you request from the EHR. In this case we want to:
+            // launch            - Get the launch context
+            // openid & fhirUser - Get the current user
+            // patient/*.read    - Read patient data
+            scope: "launch openid fhirUser patient/*.read",
+
+            // Typically, if your redirectUri points to the root of the current directory
+            // (where the launchUri is), you can omit this option because the default value is
+            // ".". However, some servers do not support directory indexes so "." and "./"
+            // will not automatically map to the "index.html" file in that directory.
+            redirectUri: "index.html"
         });
     </script>
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
 </body>
 
 </html>
