@@ -8,7 +8,7 @@
     }
 
     function onReady(smart) {
-      console.log('23')
+      console.log('24')
       if (smart.hasOwnProperty('patient')) {
         console.log('inside smart has own property')
         var patient = smart.patient;
@@ -26,11 +26,6 @@
 
         var testpatient = smart.api.create({
           "type": "Patient",
-          "identifier": [{
-            "assigner": {
-              "reference": "Organization/619848"
-            }
-          }],
           "active": true,
           "name": [{
               "use": "official",
@@ -55,14 +50,6 @@
               }
             }
           ],
-          "telecom": [{
-            "system": "phone",
-            "value": "8168229121",
-            "use": "home",
-            "period": {
-              "start": "2012-05-17T15:33:18.000Z"
-            }
-          }],
           "gender": "male",
           "birthDate": "1990-09-15",
           "address": [{
@@ -79,33 +66,7 @@
             "period": {
               "start": "2012-05-17T15:33:18.000Z"
             }
-          }],
-          "maritalStatus": {
-            "coding": [{
-              "system": "http://hl7.org/fhir/v3/NullFlavor",
-              "code": "UNK",
-              "display": "Unknown"
-            }],
-            "text": "Unknown"
-          },
-          "communication": [{
-            "language": {
-              "coding": [{
-                "system": "urn:ietf:bcp:47",
-                "code": "en",
-                "display": "English"
-              }],
-              "text": "English"
-            },
-            "preferred": true
-          }],
-          "careProvider": [{
-              "reference": "Practitioner/4594010"
-            },
-            {
-              "reference": "Practitioner/4646007"
-            }
-          ]
+          }]
         })
 
 
