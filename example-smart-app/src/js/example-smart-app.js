@@ -8,13 +8,19 @@
     }
 
     function onReady(smart) {
-      console.log('8')
+      console.log('9')
       console.log(smart.server.serviceUrl)
       console.log(FHIR.client({
         serviceUrl: smart.server.serviceUrl
       }))
-      // const client = FHIR.client('69cbc6b1ca');
-      // console.log(client)
+
+      const client = FHIR.client({
+        serviceUrl: smart.server.serviceUrl
+      })
+      console.log(client)
+
+      test = client.request("Patient");
+      console.log(test)
 
 
       // console.log(client.request("AllergyIntolerance"))
