@@ -278,6 +278,7 @@
     };
 
     window.addPatient = function(p) {
+        // adding this to add commit
         console.log("inside add patient");
         FHIR.oauth2.ready(function(smart) {
             console.log("inside add patient");
