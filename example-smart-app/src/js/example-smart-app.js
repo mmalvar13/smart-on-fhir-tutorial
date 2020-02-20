@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("49");
+            console.log("50");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -376,8 +376,8 @@
                 name: [
                     {
                         use: "official",
-                        family: [last],
-                        given: [first]
+                        family: ["last"],
+                        given: ["first"]
                     }
                 ],
                 gender: "female",
