@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("53");
+            console.log("54");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -407,7 +407,9 @@
 
             $.when(pt).done(function(patient) {
                 console.log("inside pt done");
+                console.log(patient);
                 patient.birthDate = "2000-01-01";
+                console.log(patient);
                 smart.api.update({resource: patient}).done(function(r) {
                     console.log("inside done");
                     var out = JSON.stringify(r.data, null, "   ");
