@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("47");
+            console.log("48");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -281,6 +281,9 @@
         // adding this to add commit
         console.log("inside add patient");
         FHIR.oauth2.ready(function(smart) {
+            var first = document.getElementById("firstname").value;
+
+            var last = document.getElementById("lastname").value;
             console.log("inside add patient");
             console.log(smart);
             var resource = {
@@ -310,8 +313,8 @@
                 name: [
                     {
                         use: "official",
-                        family: ["Adamson"],
-                        given: ["Adam"]
+                        family: [last],
+                        given: [first]
                     }
                 ],
                 gender: "female",
