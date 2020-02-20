@@ -416,7 +416,7 @@
                 smart.api.update({resource: patient[0]}).done(function(r) {
                     console.log("inside done");
                     var out = JSON.stringify(r.data, null, "   ");
-                    document.getElementById("testing")[0].innerText =
+                    document.getElementById("testing").innerText =
                         "Now " +
                         "we have the following patient in the FHIR server:\n\n" +
                         out;
