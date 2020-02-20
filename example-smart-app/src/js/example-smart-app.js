@@ -8,8 +8,11 @@
         }
 
         function onReady(smart) {
-            console.log("59");
+            console.log("1");
             console.log(smart);
+
+            var theotherone = tryToCallAnotherClient();
+            console.log(theotherone);
             if (smart.hasOwnProperty("patient")) {
                 var patient = smart.patient;
                 var user = smart.user;
@@ -126,6 +129,17 @@
         FHIR.oauth2.ready(onReady, onError);
         return ret.promise();
     };
+
+    function tryToCallAnotherClient() {
+        console.log("inside try to call another");
+        var theclient = FHIR.oauth2.authorize({
+            client_id: "7ea8fe55-31e3-49a2-9bff-e43812135d57",
+            scope:
+                "patient/Patient.read patient/Patient.write patient/Observation.read patient/AllergyIntolerance.read patient/AllergyIntolerance.write launch online_access openid profile"
+        });
+        console.log(theclient);
+        return theclient;
+    }
 
     window.addPatient = function(p) {
         // adding this to add commit
