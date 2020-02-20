@@ -131,7 +131,7 @@
     return new Promise((resolve, reject) => {
       axios({
         method: 'get',
-        url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Patient?_id=542884',
+        url: 'https://fhir-ehr.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Patient?_id=542884',
         params: {
           '_id': '543884'
         },
