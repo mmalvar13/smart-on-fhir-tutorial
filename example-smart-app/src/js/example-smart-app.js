@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("51");
+            console.log("52");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -388,26 +388,33 @@
 
             console.log(smart.patient.api);
 
-            // Create the patient and then update its active flag to "true"
-            smart.api.get({resource: {id: smart.patient.id}}).done(function(r) {
-                console.log("inside update");
-                console.log(r);
-                // NOTE that the patient will now have new "id" assigned by the
-                // server. The next request will be PUT (update) and that id will
-                // be required...
-                var patient = r.data;
-                patient["birthDate"] = "2001-01-01";
-                smart.api
-                    .get({resource: {id: smart.patient.id}})
-                    .done(function(r) {
-                        console.log("inside done");
-                        var out = JSON.stringify(r.data, null, "   ");
-                        document.getElementsByTagName("pre")[0].innerText =
-                            "Now " +
-                            "we have the following patient in the FHIR server:\n\n" +
-                            out;
-                    });
+            var pt = smart.patient.api.fetchAll({
+                type: "Patient",
+                interaction: [
+                    {
+                        code: "read"
+                    }
+                ]
             });
+            console.log("pt", pt);
+            console.log(pt);
+
+            $.when(pt).fail(onError);
+
+            $.when(pt).done(function(patient) {
+                console.log("inside pt done");
+                patient.birthDate = "2000-01-01";
+                smart.api.update({resource: patient}).done(function(r) {
+                    console.log("inside done");
+                    var out = JSON.stringify(r.data, null, "   ");
+                    document.getElementsById("testing")[0].innerText =
+                        "Now " +
+                        "we have the following patient in the FHIR server:\n\n" +
+                        out;
+                });
+            });
+
+            // Create the patient and then update its active flag to "true"
         });
     };
 
