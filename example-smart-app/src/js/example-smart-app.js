@@ -1,3 +1,4 @@
+import axios from 'axios';
 (function(window) {
   window.extractData = function() {
     var ret = $.Deferred();
