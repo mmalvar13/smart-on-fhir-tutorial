@@ -8,7 +8,7 @@
         }
 
         function onReady(smart) {
-            console.log("58");
+            console.log("59");
             console.log(smart);
             if (smart.hasOwnProperty("patient")) {
                 var patient = smart.patient;
@@ -205,7 +205,8 @@
             $.when(pt).fail(onError);
 
             $.when(pt).done(function(patient) {
-                patient[0].birthDate = "2000-02-02";
+                var bdayvalue = document.getElementById("updateit").value;
+                patient[0].birthDate = bdayvalue;
                 smart.api.update({resource: patient[0]}).done(function(r) {
                     var out = JSON.stringify(patient[0], null, "   ");
                     document.getElementById("testing").innerText =
