@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("52");
+            console.log("53");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -345,6 +345,10 @@
     };
 
     window.updatePatient = function(p) {
+        function onError() {
+            console.log("Loading error", arguments);
+            ret.reject();
+        }
         console.log("inside update patient");
         FHIR.oauth2.ready(function(smart) {
             console.log("inside update patient");
