@@ -8,7 +8,8 @@
         }
 
         function onReady(smart) {
-            console.log("56");
+            console.log("57");
+            console.log(smart);
             if (smart.hasOwnProperty("patient")) {
                 var patient = smart.patient;
                 var user = smart.user;
