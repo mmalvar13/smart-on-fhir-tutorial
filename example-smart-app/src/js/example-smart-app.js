@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("48");
+            console.log("49");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -332,6 +332,71 @@
                 // be required...
                 var patient = r.data;
                 patient["active"] = true;
+                smart.api.update({resource: patient}).done(function(r) {
+                    console.log("inside done");
+                    var out = JSON.stringify(r.data, null, "   ");
+                    document.getElementsByTagName("pre")[0].innerText =
+                        "Now " +
+                        "we have the following patient in the FHIR server:\n\n" +
+                        out;
+                });
+            });
+        });
+    };
+
+    window.updatePatient = function(p) {
+        console.log("inside update patient");
+        FHIR.oauth2.ready(function(smart) {
+            console.log("inside update patient");
+            console.log(smart);
+            var resource = {
+                resourceType: "Patient",
+                text: {
+                    status: "generated",
+                    div: "<div><p>Test Patient</p></div>"
+                },
+                identifier: [
+                    {
+                        use: "usual",
+                        type: {
+                            coding: [
+                                {
+                                    system: "http://hl7.org/fhir/v2/0203",
+                                    code: "MR",
+                                    display: "Medical record number"
+                                }
+                            ],
+                            text: "Medical record number"
+                        },
+                        system: "http://hospital.smarthealthit.org",
+                        value: "12345"
+                    }
+                ],
+                active: false,
+                name: [
+                    {
+                        use: "official",
+                        family: [last],
+                        given: [first]
+                    }
+                ],
+                gender: "female",
+                birthDate: "2007-03-20"
+            };
+
+            console.log(resource);
+
+            console.log(smart.patient.api);
+
+            // Create the patient and then update its active flag to "true"
+            smart.patient.api.update({resource: resource}).done(function(r) {
+                console.log("inside update");
+                console.log(r);
+                // NOTE that the patient will now have new "id" assigned by the
+                // server. The next request will be PUT (update) and that id will
+                // be required...
+                var patient = r.data;
+                patient["birthDate"] = "2001-01-01";
                 smart.api.update({resource: patient}).done(function(r) {
                     console.log("inside done");
                     var out = JSON.stringify(r.data, null, "   ");
