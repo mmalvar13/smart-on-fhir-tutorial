@@ -9,7 +9,7 @@
     }
 
     function onReady(smart) {
-      console.log("1");
+      console.log("2");
       console.log(smart);
 
       var theotherone = tryToCallAnotherClient();
@@ -129,7 +129,16 @@
 
   function tryToCallAnotherClient() {
     return new Promise((resolve, reject) => {
-      axios.get("https://fhir-ehr.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Patient?_id=542884").then(response => {
+      axios({
+        method: 'get',
+        url: 'https://fhir-open.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Patient?_id=542884',
+        params: {
+          '_id': '543884'
+        },
+        headers: {
+          'Accept': 'application/json+fhir'
+        }
+      }).then(response => {
 
         console.log('response', response)
 
@@ -138,6 +147,15 @@
         // resolve(response);
       });
     });
+    //   axios.get("https://fhir-ehr.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca/Patient?_id=542884").then(response => {
+
+    //     console.log('response', response)
+
+    //     // commit("setStateGeometries", stateBoundaries);
+
+    //     // resolve(response);
+    //   });
+    // });
     // console.log("inside try to call another");
     // var theclient = FHIR.oauth2.authorize({
     //   client_id: "7ea8fe55-31e3-49a2-9bff-e43812135d57",
