@@ -145,7 +145,7 @@
         // };
 
         function onReady(smart) {
-            console.log("55");
+            console.log("56");
             if (smart.hasOwnProperty("patient")) {
                 console.log("inside smart has own property");
                 var patient = smart.patient;
@@ -331,6 +331,7 @@
                 // server. The next request will be PUT (update) and that id will
                 // be required...
                 var patient = r.data;
+                console.log(patient);
                 patient["active"] = true;
                 smart.api.update({resource: patient}).done(function(r) {
                     console.log("inside done");
@@ -412,7 +413,7 @@
                 console.log(patient[0].birthData);
                 patient[0].birthDate = "2000-01-01";
                 console.log(patient);
-                smart.api.update({resource: patient}).done(function(r) {
+                smart.api.update({resource: patient[0]}).done(function(r) {
                     console.log("inside done");
                     var out = JSON.stringify(r.data, null, "   ");
                     document.getElementsById("testing")[0].innerText =
