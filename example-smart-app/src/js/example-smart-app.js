@@ -1,5 +1,5 @@
-import axios from 'axios';
 (function(window) {
+  import axios from 'axios';
   window.extractData = function() {
     var ret = $.Deferred();
 
